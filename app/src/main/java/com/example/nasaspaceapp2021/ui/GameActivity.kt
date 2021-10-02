@@ -8,6 +8,7 @@ import android.graphics.Color.red
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.Vibrator
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -51,6 +52,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var tvInformation : TextView
     private lateinit var imgYoutube : ImageView
     private lateinit var imgNasa : ImageView
+    private lateinit var imgAstronaut : ImageView
     private var imageUrl: String? = null
     var img = ""
     var i = 0
@@ -74,6 +76,7 @@ class GameActivity : AppCompatActivity() {
         tvCorrectAnswer = findViewById(R.id.tvCorrectAnswer)
         questionBackground = findViewById(R.id.questionBackground)
         tvHint = findViewById(R.id.tvHint)
+        imgAstronaut = findViewById(R.id.imgAstronaut)
         dataRetrieve(0)
 
 
@@ -87,6 +90,7 @@ class GameActivity : AppCompatActivity() {
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
+                initiateAnimation()
                 dataRetrieve(1)
             }
             else{
@@ -111,6 +115,7 @@ class GameActivity : AppCompatActivity() {
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
+                initiateAnimation()
                 dataRetrieve(1)
             }
             else{
@@ -135,6 +140,7 @@ class GameActivity : AppCompatActivity() {
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
+                initiateAnimation()
                 dataRetrieve(1)
             }
             else{
@@ -159,6 +165,7 @@ class GameActivity : AppCompatActivity() {
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
+                initiateAnimation()
                 dataRetrieve(1)
             }
             else{
@@ -206,9 +213,21 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    private fun initiateAnimation(){
+        var trans = TranslateAnimation(0F, 250F, 0F, 100F)
+        trans.setDuration(2000)
+        imgAstronaut.visibility = View.VISIBLE
+        imgAstronaut.startAnimation(trans)
+        val handler = Handler()
+        handler.postDelayed(Runnable {
+            imgAstronaut.visibility = View.GONE
+        }, 2000)
+    }
+
     private fun checkAnswer(){
         var trans = TranslateAnimation(0F, 250F, 0F, 100F)
         trans.setDuration(500)
+
         var session = false
         if(live1.visibility.equals(View.VISIBLE) && session == false){
             live1.startAnimation(trans)
@@ -244,6 +263,7 @@ class GameActivity : AppCompatActivity() {
                     var intent = Intent(this@GameActivity, MainActivity::class.java)
                     startActivity(intent)
                 }else{
+
                     img = listItems[i].image.toString()
                     information = listItems[i].information.toString()
                     youtubeLink = listItems[i].youtubeLink.toString()

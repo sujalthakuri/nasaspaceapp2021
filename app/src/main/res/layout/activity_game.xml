@@ -34,12 +34,30 @@
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/sun" />
 
+    <ImageView
+        android:id="@+id/imgAstronaut"
+        android:layout_width="235dp"
+        android:layout_height="320dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@drawable/astronaut_dab"
+        android:translationZ="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.622" />
+
     <TextView
         android:id="@+id/tvHint"
         android:translationZ="90dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hint"
+        android:text="ⓘ Hint"
+        android:textSize="25dp"
+        android:padding="4dp"
+        android:background="@drawable/rounded_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
@@ -47,11 +65,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.134" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOption1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+        android:minWidth="120dp"
+        android:maxWidth="120dp"
+        android:textColor="@color/white"
+        android:background="@drawable/option"
         android:translationZ="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,11 +82,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.827" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOption2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+        android:minWidth="120dp"
+        android:maxWidth="120dp"
+        android:textColor="@color/white"
+        android:background="@drawable/option"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
@@ -72,11 +98,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.827" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOption3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+        android:minWidth="120dp"
+        android:maxWidth="120dp"
+        android:textColor="@color/white"
+        android:background="@drawable/option"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
@@ -84,11 +114,15 @@
         app:layout_constraintTop_toBottomOf="@+id/btnOption1"
         app:layout_constraintVertical_bias="0.446" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOption4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+        android:minWidth="120dp"
+        android:maxWidth="120dp"
+        android:textColor="@color/white"
+        android:background="@drawable/option"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
@@ -100,10 +134,13 @@
         android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:text="1. "
         android:textSize="30dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:translationZ="90dp"
+        android:background="@drawable/rounded_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -127,13 +164,13 @@
     <ImageView
         android:id="@+id/questionBackground"
         android:layout_width="410dp"
-        android:layout_height="448dp"
+        android:layout_height="653dp"
         android:layout_marginEnd="4dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView

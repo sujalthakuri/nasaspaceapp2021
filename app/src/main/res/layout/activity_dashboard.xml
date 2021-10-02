@@ -10,7 +10,6 @@
         android:id="@+id/gifImageView"
         android:layout_width="400dp"
         android:layout_height="734dp"
-
         android:scaleType="fitXY"
         android:src="@drawable/milkyway"
         app:layout_constraintBottom_toBottomOf="parent"
