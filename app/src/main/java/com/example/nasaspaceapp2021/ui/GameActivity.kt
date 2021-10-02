@@ -1,9 +1,11 @@
 package com.example.nasaspaceapp2021.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color.red
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Vibrator
 import android.text.TextUtils
 import android.view.View
 import android.webkit.MimeTypeMap
@@ -24,6 +26,10 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import android.view.animation.TranslateAnimation
+
+
+
 
 class GameActivity : AppCompatActivity() {
     private lateinit var live1 : ImageView
@@ -72,11 +78,18 @@ class GameActivity : AppCompatActivity() {
                 dataRetrieve(1)
             }
             else{
+                var session = false
                 val snackbar = Snackbar
                     .make(findViewById(R.id.questionLayout), "Incorrect Answer", Snackbar.LENGTH_LONG)
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
                 snackbar.show()
+
+                val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibratorService.vibrate(500)
+                checkAnswer()
+
+                checkLives()
             }
         }
         option2.setOnClickListener {
@@ -89,11 +102,18 @@ class GameActivity : AppCompatActivity() {
                 dataRetrieve(1)
             }
             else{
+                var session = false
                 val snackbar = Snackbar
                     .make(findViewById(R.id.questionLayout), "Incorrect Answer", Snackbar.LENGTH_LONG)
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
                 snackbar.show()
+
+                val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibratorService.vibrate(500)
+                checkAnswer()
+
+                checkLives()
             }
         }
         option3.setOnClickListener {
@@ -106,11 +126,18 @@ class GameActivity : AppCompatActivity() {
                 dataRetrieve(1)
             }
             else{
+                var session = false
                 val snackbar = Snackbar
                     .make(findViewById(R.id.questionLayout), "Incorrect Answer", Snackbar.LENGTH_LONG)
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
                 snackbar.show()
+
+                val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibratorService.vibrate(500)
+                checkAnswer()
+
+                checkLives()
             }
         }
         option4.setOnClickListener {
@@ -123,12 +150,40 @@ class GameActivity : AppCompatActivity() {
                 dataRetrieve(1)
             }
             else{
+                var session = false
                 val snackbar = Snackbar
                     .make(findViewById(R.id.questionLayout), "Incorrect Answer", Snackbar.LENGTH_LONG)
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
                 snackbar.show()
+
+                val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibratorService.vibrate(500)
+
+                checkAnswer()
+                checkLives()
             }
+        }
+    }
+
+    private fun checkAnswer(){
+        var trans = TranslateAnimation(0F, 250F, 0F, 100F)
+        trans.setDuration(500)
+        var session = false
+        if(live1.visibility.equals(View.VISIBLE) && session == false){
+            live1.startAnimation(trans)
+            live1.visibility = View.GONE
+            session = true
+        }
+        if(live2.visibility.equals(View.VISIBLE) && session == false){
+            live2.startAnimation(trans)
+            live2.visibility = View.GONE
+            session = true
+        }
+        if(live3.visibility.equals(View.VISIBLE) && session == false){
+            live3.startAnimation(trans)
+            live3.visibility = View.GONE
+            session = true
         }
     }
 
@@ -169,5 +224,32 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun checkLives() : Int{
+
+        var liveRemaining : Int = 0
+        if(live1.visibility.equals(View.VISIBLE))
+        {
+            liveRemaining = liveRemaining + 1
+        }
+        if(live2.visibility.equals(View.VISIBLE))
+        {
+            liveRemaining = liveRemaining + 1
+        }
+        if(live3.visibility.equals(View.VISIBLE))
+        {
+            liveRemaining  = liveRemaining + 1
+        }
+        println("###")
+        println(liveRemaining.toString())
+        if(liveRemaining == 0){
+            val snackbar = Snackbar
+                .make(findViewById(R.id.questionLayout), "Game Over", Snackbar.LENGTH_LONG)
+            var snackbarView : View = snackbar.view
+            snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red));
+            snackbar.show()
+        }
+        return liveRemaining
     }
 }
