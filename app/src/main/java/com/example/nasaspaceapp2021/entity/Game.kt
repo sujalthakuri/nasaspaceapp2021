@@ -16,9 +16,15 @@ data class Game(
     val option3 : String? = "",
     val option4 : String? = "",
     val correctAnswer : String? = "",
-    val image : String? = ""
+    val image : String? = "",
+    val information : String? = "",
+    val youtubeLink : String? = "",
+    val nasaLink : String? = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -41,6 +47,9 @@ data class Game(
         parcel.writeString(option4)
         parcel.writeString(correctAnswer)
         parcel.writeString(image)
+        parcel.writeString(information)
+        parcel.writeString(youtubeLink)
+        parcel.writeString(nasaLink)
     }
 
     override fun describeContents(): Int {

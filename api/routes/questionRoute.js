@@ -14,6 +14,9 @@ router.post('/add_question', upload.single('image'), function(req,res){
     const correctAnswer = req.body.correctAnswer
     const questionBank = req.body.questionBank
     const path = req.file.path
+    const information = req.body.information
+    const youtubeLink = req.body.youtubeLink
+    const nasaLink = req.body.nasaLink
 
 
     const data = new Question({
@@ -24,7 +27,10 @@ router.post('/add_question', upload.single('image'), function(req,res){
         option4 : option4,
         correctAnswer : correctAnswer,
         questionBank : questionBank,
-        image : path
+        image : path,
+        information :information,
+        youtubeLink : youtubeLink,
+        nasaLink : nasaLink
     })
     data.save()
     .then(function(result){

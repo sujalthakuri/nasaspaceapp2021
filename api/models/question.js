@@ -39,6 +39,18 @@ const Question = mongoose.model('Question',{
     image :{
         type : String,
         required : true
+    },
+    information : {
+        type:String,
+        required:true
+    },
+    youtubeLink : {
+        type : String,
+        required:true
+    },
+    nasaLink :{
+        type : String,
+        required : true
     }
 
 })

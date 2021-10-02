@@ -1,12 +1,16 @@
 package com.example.nasaspaceapp2021.ui
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color.red
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.Button
@@ -27,8 +31,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import android.view.animation.TranslateAnimation
-
-
+import androidx.appcompat.app.AlertDialog
+import com.example.nasaspaceapp2021.MainActivity
 
 
 class GameActivity : AppCompatActivity() {
@@ -43,9 +47,16 @@ class GameActivity : AppCompatActivity() {
     private lateinit var option4 : Button
     private lateinit var tvCorrectAnswer : TextView
     private lateinit var questionBackground : ImageView
+    private lateinit var tvHint : TextView
+    private lateinit var tvInformation : TextView
+    private lateinit var imgYoutube : ImageView
+    private lateinit var imgNasa : ImageView
     private var imageUrl: String? = null
     var img = ""
     var i = 0
+    var youtubeLink : String? = ""
+    var nasaLink : String? = ""
+    var information : String? = ""
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +73,7 @@ class GameActivity : AppCompatActivity() {
         option4 = findViewById(R.id.btnOption4)
         tvCorrectAnswer = findViewById(R.id.tvCorrectAnswer)
         questionBackground = findViewById(R.id.questionBackground)
+        tvHint = findViewById(R.id.tvHint)
         dataRetrieve(0)
 
 
@@ -164,6 +176,34 @@ class GameActivity : AppCompatActivity() {
                 checkLives()
             }
         }
+
+        tvHint.setOnClickListener{
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.activity_hint, null)
+            val mBuilder = AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("Did You Know?")
+
+            tvInformation= mDialogView.findViewById(R.id.tvInformation)
+            imgYoutube = mDialogView.findViewById(R.id.imgYoutube)
+            imgNasa = mDialogView.findViewById(R.id.imgNasa)
+            tvInformation.setText(information)
+
+            imgYoutube.setOnClickListener{
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(youtubeLink)
+                startActivity(i)
+            }
+
+            imgNasa.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(nasaLink)
+                startActivity(i)
+            }
+
+
+            val mAlertDialog = mBuilder.show()
+            mAlertDialog
+        }
     }
 
     private fun checkAnswer(){
@@ -197,17 +237,28 @@ class GameActivity : AppCompatActivity() {
                 println(response.toString())
 
                 var listItems = response.data!!
-                img = listItems[i].image.toString()
+                var listSize = response.data.size
+                println("### ListItems" + i + " " + listSize)
+                if(i == listSize) {
+                    //Write code here to display the Victory Screen
+                    var intent = Intent(this@GameActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    img = listItems[i].image.toString()
+                    information = listItems[i].information.toString()
+                    youtubeLink = listItems[i].youtubeLink.toString()
+                    nasaLink = listItems[i].nasaLink.toString()
 
-                runOnUiThread( {
-                    option1.setText(listItems[i].option1)
-                    option2.setText(listItems[i].option2)
-                    option3.setText(listItems[i].option3)
-                    option4.setText(listItems[i].option4)
-                    question.setText(listItems[i].question)
-                    tvCorrectAnswer.setText(listItems[i].correctAnswer)
+                    runOnUiThread({
+                        option1.setText(listItems[i].option1)
+                        option2.setText(listItems[i].option2)
+                        option3.setText(listItems[i].option3)
+                        option4.setText(listItems[i].option4)
+                        question.setText(listItems[i].question)
+                        tvCorrectAnswer.setText(listItems[i].correctAnswer)
+                    }
+                    )
                 }
-                )
 
 
                 var image = ServiceBuilder.loadImage() + img
