@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const upload = require('../middleware/upload')
 const Question = require('../models/question')
 
 
-router.post('/add_question', function(req,res){
+router.post('/add_question', upload.single('image'), function(req,res){
     console.log("Working")
     const question = req.body.question
     const option1 = req.body.option1
@@ -12,6 +13,8 @@ router.post('/add_question', function(req,res){
     const option4 = req.body.option4
     const correctAnswer = req.body.correctAnswer
     const questionBank = req.body.questionBank
+    const path = req.file.path
+
 
     const data = new Question({
         question : question,
@@ -20,7 +23,8 @@ router.post('/add_question', function(req,res){
         option3 : option3,
         option4 : option4,
         correctAnswer : correctAnswer,
-        questionBank : questionBank
+        questionBank : questionBank,
+        image : path
     })
     data.save()
     .then(function(result){
@@ -32,9 +36,9 @@ router.post('/add_question', function(req,res){
 })
 
 
-router.get('/load_question/',function(req,res){
+router.post('/load_question/',function(req,res){
     const questionBank = req.body.questionBank
-    Feedback.find({questionBank:questionBank})
+    Question.find({questionBank:questionBank})
     .then(function(data){
         res.status(200).json({success:true, data :data})
     })

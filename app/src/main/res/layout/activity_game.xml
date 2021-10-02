@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/questionLayout"
     tools:context=".ui.GameActivity">
 
     <ImageView
+        android:translationZ="90dp"
         android:id="@+id/life2"
         android:layout_width="46dp"
         android:layout_height="46dp"
@@ -20,6 +22,7 @@
         app:srcCompat="@drawable/sun" />
 
     <ImageView
+        android:translationZ="90dp"
         android:id="@+id/life3"
         android:layout_width="46dp"
         android:layout_height="46dp"
@@ -35,14 +38,14 @@
         android:id="@+id/btnOption1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
         android:text="Button"
+        android:translationZ="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
 
     <Button
         android:id="@+id/btnOption2"
@@ -51,10 +54,10 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQuestion"
-        app:layout_constraintVertical_bias="0.595" />
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="@+id/btnOption1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
 
     <Button
         android:id="@+id/btnOption3"
@@ -75,10 +78,10 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="@+id/btnOption3"
         app:layout_constraintTop_toBottomOf="@+id/btnOption2"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/tvQuestion"
@@ -87,12 +90,16 @@
         android:text="1. "
         android:textSize="30dp"
         android:textStyle="bold"
+        android:translationZ="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.684" />
 
     <ImageView
+        android:translationZ="90dp"
         android:id="@+id/life1"
         android:layout_width="46dp"
         android:layout_height="46dp"
@@ -103,4 +110,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/sun" />
+
+    <ImageView
+        android:id="@+id/questionBackground"
+        android:layout_width="410dp"
+        android:layout_height="448dp"
+        android:layout_marginEnd="4dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvCorrectAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
