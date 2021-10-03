@@ -282,7 +282,7 @@ class GameActivity : AppCompatActivity() {
                 var listItems = response.data!!
                 var listSize = response.data.size
                 println("### ListItems" + i + " " + listSize)
-                if(i == listSize-4) {
+                if(i == listSize) {
                     //Write code here to display the Victory Screen
                     var intent = Intent(this@GameActivity, EndActivity::class.java)
                     startActivity(intent)
