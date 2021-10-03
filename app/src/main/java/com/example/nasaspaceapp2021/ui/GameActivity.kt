@@ -14,10 +14,6 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.webkit.MimeTypeMap
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.gamepedia.ui.api.ServiceBuilder
@@ -32,6 +28,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 import android.view.animation.TranslateAnimation
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.nasaspaceapp2021.MainActivity
 
@@ -53,6 +50,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var imgYoutube : ImageView
     private lateinit var imgNasa : ImageView
     private lateinit var imgAstronaut : ImageView
+    private lateinit var videoBackground : VideoView
     private var imageUrl: String? = null
     var img = ""
     var i = 0
@@ -77,6 +75,11 @@ class GameActivity : AppCompatActivity() {
         questionBackground = findViewById(R.id.questionBackground)
         tvHint = findViewById(R.id.tvHint)
         imgAstronaut = findViewById(R.id.imgAstronaut)
+
+//        videoBackground = findViewById(R.id.videoBackground)
+//        videoBackground.setVideoPath("android.resource://" + packageName  + "/" + R.raw.earthview);
+//        videoBackground.start()
+
         dataRetrieve(0)
 
 
@@ -84,14 +87,18 @@ class GameActivity : AppCompatActivity() {
 
         option1.setOnClickListener {
             if(option1.text.toString() == tvCorrectAnswer.text.toString()) {
-                option1.setBackgroundColor(R.color.green)
                 val snackbar = Snackbar
                     .make(findViewById(R.id.questionLayout),"Correct Answer", Snackbar.LENGTH_LONG)
                 var snackbarView : View = snackbar.view
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
                 initiateAnimation()
-                dataRetrieve(1)
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    imgAstronaut.visibility = View.GONE
+                    dataRetrieve(1)
+
+                }, 2000)
             }
             else{
                 var session = false
@@ -104,7 +111,7 @@ class GameActivity : AppCompatActivity() {
                 val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 vibratorService.vibrate(500)
                 checkAnswer()
-
+                val handler = Handler()
                 checkLives()
             }
         }
@@ -116,7 +123,12 @@ class GameActivity : AppCompatActivity() {
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
                 initiateAnimation()
-                dataRetrieve(1)
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    imgAstronaut.visibility = View.GONE
+                    dataRetrieve(1)
+
+                }, 2000)
             }
             else{
                 var session = false
@@ -141,7 +153,12 @@ class GameActivity : AppCompatActivity() {
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
                 initiateAnimation()
-                dataRetrieve(1)
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    imgAstronaut.visibility = View.GONE
+                    dataRetrieve(1)
+
+                }, 2000)
             }
             else{
                 var session = false
@@ -166,7 +183,12 @@ class GameActivity : AppCompatActivity() {
                 snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
                 initiateAnimation()
-                dataRetrieve(1)
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    imgAstronaut.visibility = View.GONE
+                    dataRetrieve(1)
+
+                }, 2000)
             }
             else{
                 var session = false
@@ -213,15 +235,17 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun initiateAnimation(){
-        var trans = TranslateAnimation(0F, 250F, 0F, 100F)
-        trans.setDuration(2000)
-        imgAstronaut.visibility = View.VISIBLE
-        imgAstronaut.startAnimation(trans)
+    private fun initiateAnimation(): Boolean{
         val handler = Handler()
         handler.postDelayed(Runnable {
             imgAstronaut.visibility = View.GONE
         }, 2000)
+        var trans = TranslateAnimation(0F, 250F, 0F, 100F)
+        trans.setDuration(2000)
+        imgAstronaut.visibility = View.VISIBLE
+        imgAstronaut.startAnimation(trans)
+
+        return true
     }
 
     private fun checkAnswer(){
