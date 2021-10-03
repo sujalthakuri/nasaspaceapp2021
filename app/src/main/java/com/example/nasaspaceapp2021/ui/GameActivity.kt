@@ -98,7 +98,7 @@ class GameActivity : AppCompatActivity() {
                     imgAstronaut.visibility = View.GONE
                     dataRetrieve(1)
 
-                }, 2000)
+                }, 1000)
             }
             else{
                 var session = false
@@ -128,7 +128,7 @@ class GameActivity : AppCompatActivity() {
                     imgAstronaut.visibility = View.GONE
                     dataRetrieve(1)
 
-                }, 2000)
+                }, 1000)
             }
             else{
                 var session = false
@@ -158,7 +158,7 @@ class GameActivity : AppCompatActivity() {
                     imgAstronaut.visibility = View.GONE
                     dataRetrieve(1)
 
-                }, 2000)
+                }, 1000)
             }
             else{
                 var session = false
@@ -188,7 +188,7 @@ class GameActivity : AppCompatActivity() {
                     imgAstronaut.visibility = View.GONE
                     dataRetrieve(1)
 
-                }, 2000)
+                }, 1000)
             }
             else{
                 var session = false
@@ -239,9 +239,9 @@ class GameActivity : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed(Runnable {
             imgAstronaut.visibility = View.GONE
-        }, 2000)
+        }, 1000)
         var trans = TranslateAnimation(0F, 250F, 0F, 100F)
-        trans.setDuration(2000)
+        trans.setDuration(1000)
         imgAstronaut.visibility = View.VISIBLE
         imgAstronaut.startAnimation(trans)
 
@@ -282,9 +282,9 @@ class GameActivity : AppCompatActivity() {
                 var listItems = response.data!!
                 var listSize = response.data.size
                 println("### ListItems" + i + " " + listSize)
-                if(i == listSize) {
+                if(i == listSize-4) {
                     //Write code here to display the Victory Screen
-                    var intent = Intent(this@GameActivity, MainActivity::class.java)
+                    var intent = Intent(this@GameActivity, EndActivity::class.java)
                     startActivity(intent)
                 }else{
 

@@ -39,7 +39,7 @@
         android:layout_height="60dp"
         android:alpha="0.8"
         android:backgroundTint="#188FA7"
-        android:text="Mission: Moon"
+        android:text="Mission: Mars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,10 +52,37 @@
         android:layout_height="60dp"
         android:alpha="0.8"
         android:backgroundTint="#188FA7"
-        android:text="Mission: Mars"
+        android:text="Mission: Moon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.371" />
+
+    <Button
+        android:id="@+id/btnAndromeda"
+        android:layout_width="193dp"
+        android:layout_height="60dp"
+        android:alpha="0.8"
+        android:backgroundTint="#188FA7"
+        android:text="Interstellar Space"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <Button
+        android:id="@+id/btnBlackhole"
+        android:layout_width="193dp"
+        android:layout_height="60dp"
+        android:alpha="0.8"
+        android:backgroundTint="#188FA7"
+        android:text="Orbiting a Black Hole"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.74" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
